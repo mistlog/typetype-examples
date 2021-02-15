@@ -1,4 +1,4 @@
-type function parseURL = (text) => ^{
+export type function parseURL = (text) => ^{
     if (parseProtocol<text> extends [infer protocol, infer rest]) {
         return {
             protocol,
@@ -28,7 +28,7 @@ type function parseUserInfo = (text) => ^{
     }
 }
 
-type function parseAuthority = (text) => ^{
+export type function parseAuthority = (text) => ^{
     if(text extends `${infer authority}@${infer rest}`) {
         return {
             authority: parseUserInfo<authority>,
@@ -42,7 +42,7 @@ type function parseAuthority = (text) => ^{
     }
 }
 
-type function parseHost = (text) => ^{
+export type function parseHost = (text) => ^{
     if(text extends `${infer name}:${infer port}`) {
         return ^{
             if(parsePort<port> extends never) {

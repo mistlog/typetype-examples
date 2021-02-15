@@ -1,4 +1,4 @@
-type parseURL<text> = parseProtocol<text> extends [infer protocol, infer rest] ? {
+export type parseURL<text> = parseProtocol<text> extends [infer protocol, infer rest] ? {
   protocol: protocol;
   rest: rest;
 } : never;
@@ -11,14 +11,14 @@ type parseUserInfo<text> = text extends `${infer username}:${infer password}` ? 
 } : {
   username: text;
 };
-type parseAuthority<text> = text extends `${infer authority}@${infer rest}` ? {
+export type parseAuthority<text> = text extends `${infer authority}@${infer rest}` ? {
   authority: parseUserInfo<authority>;
   rest: rest;
 } : {
   authority: null;
   rest: text;
 };
-type parseHost<text> = text extends `${infer name}:${infer port}` ? parsePort<port> extends never ? never : {
+export type parseHost<text> = text extends `${infer name}:${infer port}` ? parsePort<port> extends never ? never : {
   name: name;
   port: port;
 } : {

@@ -1,0 +1,40 @@
+type a = never
+type b = number
+type c = string
+
+type value = 1
+type str = "abc"
+type bool = true
+type tuple = [1,2,3]
+type obj = { a: 1, b: "abc"}
+type template = `value is: ${value}`
+
+type conditional = ^{
+    if(1 extends string) {
+        return "string"
+    } else {
+        return "number"
+    }
+}
+
+type conditional2 = ^{
+    if(1 extends string) {
+        return "string"
+    } else {
+        return ^{
+            if(1 extends 1) {
+                return "is 1"
+            } else {
+                return "not 1"
+            }
+        }
+    }
+}
+
+export type function Foo = (T) => ^{
+    if(T extends {a: infer U, b: infer U}) {
+        return U
+    } else {
+        return never
+    }
+}
