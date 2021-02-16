@@ -1,0 +1,8 @@
+export type function MyPick = (T, Keys extends keyof T) => ^{
+    for(K in Keys) {
+        return {
+            key: K,
+            value: T[K]
+        }
+    }
+}

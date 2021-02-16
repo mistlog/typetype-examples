@@ -1,0 +1,1 @@
+export type MyPick<T, Keys extends keyof T> = { [K in Keys]: T[K] };
