@@ -13,6 +13,9 @@ type template = `value is: ${value}`
 type obj = { a: 1, b: "abc", c: [1,2]}
 type valueDeep = obj["c"][1]
 
+type u1 = union [0, 1, 2]
+type u2 = | [0, 1, 2]
+
 type f1 = type () => void
 type f2 = type (a:number, b:string) => number
 type f3 = type () => type (a:number, b:string) => void
@@ -44,5 +47,25 @@ export type function Foo = (T) => ^{
         return U
     } else {
         return never
+    }
+}
+
+type Keys = union ["Name", "Age"]
+
+type mapped1 = ^{
+    for(K in Keys) {
+        return {
+            key: K,
+            value: boolean
+        }
+    }
+}
+
+type mapped2 = ^{
+    for(K in Keys) {
+        return {
+            key: `get${K}`,
+            value: type () => string
+        }
     }
 }

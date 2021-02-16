@@ -13,6 +13,8 @@ type obj = {
   c: [1, 2];
 };
 type valueDeep = obj["c"][1];
+type u1 = 0 | 1 | 2;
+type u2 = 0 | 1 | 2;
 type f1 = () => void;
 type f2 = (a: number, b: string) => number;
 type f3 = () => (a: number, b: string) => void;
@@ -22,3 +24,6 @@ export type Foo<T> = T extends {
   a: infer U;
   b: infer U;
 } ? U : never;
+type Keys = "Name" | "Age";
+type mapped1 = { [K in Keys]: boolean };
+type mapped2 = { [K in Keys as `get${K}`]: () => string };
