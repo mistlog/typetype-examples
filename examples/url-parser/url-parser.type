@@ -73,6 +73,7 @@ type function isNumberString = (text) => ^{
 }
 
 type function _isNumberString = (text) => ^{
+    /* the end of recursion: each char of text is digit, no more chars to inspect */
     if(text extends "") {
         return true
     } else if(text extends `${infer digit}${infer rest}`) {

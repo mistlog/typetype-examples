@@ -1,3 +1,6 @@
+/**
+ * basic type
+ */
 type a = never
 type b = number
 type c = string
@@ -13,13 +16,22 @@ type template = `value is: ${value}`
 type obj = { a: 1, b: "abc", c: [1,2]}
 type valueDeep = obj["c"][1]
 
+/**
+ * union type
+ */
 type u1 = union [0, 1, 2]
 type u2 = | [0, 1, 2]
 
+/**
+ * function type
+ */
 type f1 = type () => void
 type f2 = type (a:number, b:string) => number
 type f3 = type () => type (a:number, b:string) => void
 
+/**
+ * conditional type
+ */
 type conditional = ^{
     if(1 extends string) {
         return "string"
@@ -42,6 +54,9 @@ type conditional2 = ^{
     }
 }
 
+/**
+ * generic
+ */
 export type function Foo = (T) => ^{
     if(T extends {a: infer U, b: infer U}) {
         return U
@@ -50,6 +65,9 @@ export type function Foo = (T) => ^{
     }
 }
 
+/**
+ * mapped type
+ */
 type Keys = union ["Name", "Age"]
 
 type mapped1 = ^{
