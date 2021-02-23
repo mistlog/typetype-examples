@@ -13,6 +13,10 @@ type obj = {
   c: [1, 2];
 };
 type valueDeep = obj["c"][1];
+type keys = keyof {
+  readonly a?: 1;
+  b: 2;
+};
 type u1 = 0 | 1 | 2;
 type u2 = 0 | 1 | 2;
 type f1 = () => void;
