@@ -5,6 +5,9 @@
  */
 
 import { MyPick } from "./4-easy-pick";
+import { Test } from "ts-toolbelt"
+
+const { checks, check } = Test
 
 interface Todo {
     title: string
@@ -14,7 +17,6 @@ interface Todo {
 
 type TodoPreview = MyPick<Todo, 'title' | 'completed'>
 
-const todo: TodoPreview = {
-    title: 'Clean room',
-    completed: false,
-}
+checks([
+    check<TodoPreview, Pick<Todo, 'title' | 'completed'>, Test.Pass>(),
+])
