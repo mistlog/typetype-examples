@@ -4,5 +4,5 @@
         "module": "commonjs",
         "moduleResolution": "node"
     },
-    "include": ["./examples", "index.ts"]
+    "include": ["./examples", "index.ts", "./polyfill"]
 }

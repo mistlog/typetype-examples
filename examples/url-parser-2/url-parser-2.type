@@ -1,0 +1,92 @@
+export type function parseURL = (text) => ^{
+    if (parseProtocol<text> extends [infer protocol, infer rest]) {
+        return {
+            protocol,
+            ...parseAuthority<rest>
+        }
+    } else {
+        return never
+    }
+}
+
+type function parseProtocol = (text) => ^{
+    if(text extends `${infer protocol}://${infer rest}`) {
+        return [
+            protocol,
+            rest
+        ]
+    } else {
+        return never
+    }
+}
+
+type function parseUserInfo = (text) => ^{
+    if(text extends `${infer username}:${infer password}`) {
+        return { username, password }
+    } else {
+        return { username: text }
+    }
+}
+
+type function parseAuthority = (text) => ^{
+    if(text extends `${infer authority}@${infer rest}`) {
+        return {
+            authority: parseUserInfo<authority>,
+            ...parseHost<rest>
+        }
+    } else { 
+        return {
+            authority: null,
+            rest: text
+        }
+    }
+}
+
+type function parseHost = (text) => ^{
+    if(text extends `${infer name}:${infer port}`) {
+        return ^{
+            if(parsePort<port> extends never) {
+                return never
+            } else {
+                return { name, port }
+            }
+        }
+    } else {
+        return { name: text }
+    }
+}
+
+type function parsePort = (text) => ^{
+    if(isNumberString<text> extends true) {
+        return text
+    } else {
+        return never
+    }
+}
+
+type function isNumberString = (text) => ^{
+    if(text extends "") {
+        return never
+    } else {
+        return _isNumberString<text>
+    }
+}
+
+type function _isNumberString = (text) => ^{
+    /* the end of recursion: each char of text is digit, no more chars to inspect */
+    if(text extends "") {
+        return true
+    } else if(text extends `${infer digit}${infer rest}`) {
+        return ^{
+            if(digit extends Digit) {
+                return _isNumberString<rest>
+            } else {
+                return false
+            }
+        }
+    } else {
+        return false
+    }
+}
+
+type Digit = union ["0" , "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9"]

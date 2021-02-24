@@ -5,8 +5,8 @@
  */
 
 import { MyPick } from "./4-easy-pick";
-import { Test } from "ts-toolbelt"
 
+import { Test } from "ts-toolbelt"
 const { checks, check } = Test
 
 interface Todo {

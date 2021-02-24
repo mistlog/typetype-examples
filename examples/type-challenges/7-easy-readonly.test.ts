@@ -5,8 +5,8 @@
  */
 
 import { MyReadonly } from "./7-easy-readonly"
-import { A, Test } from "ts-toolbelt"
 
+import { A, Test } from "ts-toolbelt"
 const { checks, check } = Test
 
 interface Todo {
