@@ -1,0 +1,8 @@
+export type function TupleToObject = (T extends readonly any[]) => ^{
+    for(K in T[number]) {
+        return {
+            key: K,
+            value: K
+        }
+    }
+}
