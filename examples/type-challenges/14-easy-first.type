@@ -1,0 +1,7 @@
+export type function First = (T extends any[]) => ^{
+    if(T[number] extends never) {
+        return never
+    } else {
+        return T[0]
+    }
+}
