@@ -8,7 +8,7 @@ Take `url-parser` as an example:
 * output: `examples/<name>/<name>.ts`
 * test: `examples/<name>/<name>.test.ts`
 
-Local setup:
+## Local setup
 
 ```bash
 > npm install
