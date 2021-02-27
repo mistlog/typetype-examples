@@ -1,0 +1,7 @@
+export type function MyExclude = (T, U) => ^{
+    if(T extends U) {
+        return never
+    } else {
+        return T
+    }
+}
