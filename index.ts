@@ -14,8 +14,12 @@ exampleDirs.forEach(dir => {
         const source = readFileSync(example, "utf8");
         
         const name = basename(example).replace(".type", "");
-        const code = transform(source).code;
-        writeFileSync(resolve(dir, `${name}.ts`), code, "utf8");
-        console.log(`generate type file for example: ${example}`);
+        try {
+            const code = transform(source).code;
+            writeFileSync(resolve(dir, `${name}.ts`), code, "utf8");
+            console.log(`generate type file for example: ${example}`);
+        } catch (error) {
+            console.log(error);
+        }
     })
 })
