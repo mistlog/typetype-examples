@@ -1,0 +1,7 @@
+export type function Awaited = (T) => ^{
+    if(T extends Promise<infer U>) {
+        return U
+    } else {
+        return T
+    }
+}
