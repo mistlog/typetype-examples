@@ -1,0 +1,7 @@
+export type function If = (C extends boolean, T, F) => ^{
+    if(C extends true) {
+        return T
+    } else {
+        return F
+    }
+}
