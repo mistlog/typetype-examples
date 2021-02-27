@@ -1,0 +1,7 @@
+export type function Includes = (T extends readonly any[], U) => ^{
+    if(U extends T[number]) {
+        return true
+    } else {
+        return false
+    }
+} 
