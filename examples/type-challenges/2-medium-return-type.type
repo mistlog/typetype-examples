@@ -1,0 +1,7 @@
+export type function MyReturnType = (T extends Function) => ^{
+    if(T extends type (...args: any[]) => infer R) {
+        return R
+    } else {
+        return never
+    }
+} 
