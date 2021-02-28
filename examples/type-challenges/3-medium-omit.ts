@@ -1,0 +1,1 @@
+export type MyOmit<obj extends object, keys extends keyof obj> = { [key in Exclude<keyof obj, keys>]: obj[key] };

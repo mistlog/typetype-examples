@@ -1,0 +1,8 @@
+export type function MyOmit = (obj extends object, keys extends keyof obj) => ^{
+    for(key in Exclude<keyof obj, keys>) {
+        return {
+            key,
+            value: obj[key]
+        }
+    }
+}
