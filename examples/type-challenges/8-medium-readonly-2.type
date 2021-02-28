@@ -1,0 +1,17 @@
+export type function MyReadonly2 = (obj, readonlyKeys = any) => combine [
+    obj,
+    ^{
+        for(key in keyof obj) {
+            return {
+                readonly key: ^{
+                    if(key extends readonlyKeys) {
+                        return key
+                    } else {
+                        return never
+                    }
+                },
+                value: obj[key]
+            }
+        }
+    }
+]

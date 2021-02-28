@@ -17,7 +17,7 @@ exampleDirs.forEach(dir => {
         try {
             const code = transform(source).code;
             writeFileSync(resolve(dir, `${name}.ts`), code, "utf8");
-            console.log(`generate type file for example: ${example}`);
+            console.log(`generate type file for example: ${name}`);
         } catch (error) {
             console.log(error);
         }
