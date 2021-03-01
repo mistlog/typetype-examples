@@ -1,0 +1,1 @@
+export type Pop<T extends any[]> = T extends [...infer U, infer L] ? U : never;

@@ -1,0 +1,7 @@
+export type function Pop = (T extends any[]) => ^{
+    if(T extends [...infer U, infer L]) {
+        return U
+    } else {
+        return never
+    }
+}
