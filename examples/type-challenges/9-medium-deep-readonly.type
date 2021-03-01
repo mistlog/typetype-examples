@@ -1,0 +1,28 @@
+type function isObjectType = (T) => ^{
+    if(T extends object){
+        return ^{
+            if(T extends Function){
+                return false
+            } else {
+                return true
+            }
+        }
+    } else {
+        return false
+    }
+} 
+
+export type function DeepReadonly = (obj) => ^{
+    for(key in keyof obj) {
+        return {
+            readonly key,
+            value: ^{
+                if(isObjectType<obj[key]> extends true) {
+                    return DeepReadonly<obj[key]>
+                } else {
+                    return obj[key]
+                }
+            }
+        }
+    }
+}
