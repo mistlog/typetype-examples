@@ -1,0 +1,18 @@
+export type PromiseAllType = type <T extends any[]>(values: readonly [...T]) => Promise<^{
+    /* keyof T is number: 0, 1, 2... */
+    for(key in keyof T) {
+        /* create another array type from array type T */
+        return {
+            key,
+            value: Awaited<T[key]>
+        }
+    }
+}>
+
+type function Awaited = (T) => ^{
+    if(T extends Promise<infer R>) {
+        return Awaited<R>
+    } else {
+        return T
+    }
+}
