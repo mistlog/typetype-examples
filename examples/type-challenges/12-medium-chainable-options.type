@@ -4,15 +4,4 @@ export type function Chainable = (Props = {}) => {
 }
 
 type function OptionType = (Props = {}) => 
-    type <Key extends string, Value>(key: Key, value: Value) =>
-        Chainable<combine [Props, toObjectType<Key, Value>]>
-
-type function toObjectType = (Keys extends string, value) => ^{ 
-    for(key in Keys) {
-        return {
-            key,
-            value
-        }
-    }
-}
-
+    type <Key extends string, Value>(key: Key, value: Value) => Chainable<combine [Props, Record<Key, Value>]>
