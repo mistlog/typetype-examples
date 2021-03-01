@@ -1,0 +1,7 @@
+export type function Last = (T extends any[]) => ^{
+    if(T extends [...infer _, infer U]) {
+        return U
+    } else {
+        return never
+    }
+}
