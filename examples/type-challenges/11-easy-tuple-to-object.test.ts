@@ -3,6 +3,7 @@
  * - https://github.com/type-challenges/type-challenges/blob/master/questions/11-easy-tuple-to-object/README.md
  * - https://github.com/type-challenges/type-challenges/issues/945
  */
+
 import { TupleToObject } from "./11-easy-tuple-to-object";
 import { Test } from "ts-toolbelt"
 const { checks, check } = Test
