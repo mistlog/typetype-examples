@@ -1,0 +1,9 @@
+export type function TrimLeft = (str extends string) => ^{
+    if(str extends `${whitespace}${infer rest}`){
+        return TrimLeft<rest>
+    } else {
+        return str
+    }
+} 
+
+type whitespace = union [" ", "\n", "\t"]
