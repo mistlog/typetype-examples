@@ -1,0 +1,7 @@
+export type function LookUp = (U, T) => ^{
+    if(U extends { type: T }) {
+        return U
+    } else {
+        return never
+    }
+}
