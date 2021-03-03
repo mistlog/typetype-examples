@@ -1,0 +1,7 @@
+export type function Capitalize = (str extends string) => ^{
+    if(str extends `${infer char}${infer rest}`) {
+        return `${Uppercase<char>}${rest}`
+    } else {
+        return str
+    }
+}   

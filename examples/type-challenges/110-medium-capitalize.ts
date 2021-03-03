@@ -1,0 +1,1 @@
+export type Capitalize<str extends string> = str extends `${infer char}${infer rest}` ? `${Uppercase<char>}${rest}` : str;
