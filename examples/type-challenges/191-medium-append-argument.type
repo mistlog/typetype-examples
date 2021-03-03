@@ -1,0 +1,7 @@
+export type function AppendArgument = (Fn, Arg) => ^{
+    if(Fn extends type (...args: infer T) => infer R) {
+        return type (...args: [...T, Arg]) => R 
+    } else {
+        return never
+    }
+}
