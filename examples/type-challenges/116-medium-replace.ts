@@ -1,0 +1,1 @@
+export type Replace<str extends string, from extends string, to extends string> = from extends "" ? str : str extends `${infer head}${from}${infer tail}` ? `${head}${to}${tail}` : str;

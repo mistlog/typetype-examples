@@ -1,0 +1,9 @@
+export type function Replace = (str extends string, from extends string, to extends string) => ^{
+    if(from extends "") {
+        return str
+    } else if(str extends `${infer head}${from}${infer tail}`){
+        return `${head}${to}${tail}`
+    } else {
+        return str
+    }
+}
