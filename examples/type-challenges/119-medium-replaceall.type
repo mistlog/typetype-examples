@@ -1,0 +1,12 @@
+export type function ReplaceAll = (str extends string, from extends string, to extends string) => ^{
+    if(from extends "") {
+        return str
+    } else if(str extends `${from}${infer tail}`){
+        return `${to}${ReplaceAll<tail,from,to>}`
+    /* consume char one by one */
+    } else if(str extends `${infer char}${infer rest}`){
+        return `${char}${ReplaceAll<rest,from,to>}`
+    } else {
+        return str
+    }
+}
