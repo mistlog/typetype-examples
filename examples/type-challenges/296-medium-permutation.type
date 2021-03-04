@@ -1,0 +1,25 @@
+export type function Permutation = (Union, UnionCopy = Union) => ^{
+    if(IsNever<Union> extends true) {
+        return []
+    } else if(UnionCopy extends infer Item){
+        return PermuteItem<Union, Item>
+    } else {
+        return never
+    }
+}
+
+type function IsNever = (T) => ^{
+    if([T] extends [never]) {
+        return true
+    } else {
+        return false
+    }
+}
+
+type function PermuteItem = (Union, Item, Rest = Exclude<Union, Item>) => ^{
+    if(IsNever<Rest> extends true) {
+        return [Item]
+    } else {
+        return [Item, ...Permutation<Rest>]
+    }
+}
