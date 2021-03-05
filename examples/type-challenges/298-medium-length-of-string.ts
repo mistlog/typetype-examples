@@ -1,0 +1,1 @@
+export type LengthOfString<str extends string, chars extends string[] = []> = str extends `${infer head}${infer rest}` ? LengthOfString<rest, [...chars, rest]> : chars["length"];

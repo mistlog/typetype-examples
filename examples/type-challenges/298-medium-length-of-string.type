@@ -1,0 +1,7 @@
+export type function LengthOfString = (str extends string, chars extends string[] = []) => ^{
+    if(str extends `${infer head}${infer rest}`) {
+        return LengthOfString<rest, [...chars, rest]>
+    } else {
+        return chars["length"]
+    }
+}
