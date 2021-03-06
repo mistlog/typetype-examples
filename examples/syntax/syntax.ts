@@ -1,29 +1,38 @@
-type a = never;
-type b = number;
-type c = string;
-type value = 1;
-type bool = true;
-type tuple = [1, 2, 3];
-type array = string[][];
-type str = "abc";
-type template = `value is: ${value}`;
-type obj = {
-  a: 1;
-  b: "abc";
-  c: [1, 2];
-};
-type valueDeep = obj["c"][1];
-type keys = keyof {
+type keywordTypes = [string, number, boolean, never, any, bigint, object];
+type literals = ["abc", true, false, 0, 1, 2, string[][], `name: ${string}`, {
   readonly a?: 1;
-  b: 2;
-};
-type u1 = (0 | 1 | 2);
-type u2 = (0 | 1 | 2);
+  b: "abc";
+  c: {
+    a: boolean;
+  };
+}];
 type f1 = () => void;
 type f2 = (a: number, b: string) => number;
 type f3 = () => (a: number, b: string) => void;
-type conditional = 1 extends string ? "string" : "number";
-type conditional2 = 1 extends string ? "string" : 1 extends 1 ? "is 1" : "not 1";
+type u1 = (0 | 1 | 2);
+type u2 = (0 | 1 | 2);
+type i1 = ({
+  a: 1;
+} & {
+  b: 2;
+});
+type i2 = ({
+  a: 1;
+} & {
+  b: 2;
+});
+type Person = {
+  age: number;
+  name: string;
+  alive: boolean;
+};
+type Age = Person["age"];
+type Point = {
+  x: number;
+  y: number;
+};
+type P = keyof Point;
+type typeofNumber1 = 1 extends string ? "string" : "number";
 export type Foo<T> = T extends {
   a: infer U;
   b: infer U;
