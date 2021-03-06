@@ -1,0 +1,1 @@
+export type Absolute<value extends number | string | bigint> = `${value}` extends `-${infer strAbs}` ? strAbs : `${value}`;

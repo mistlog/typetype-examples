@@ -1,0 +1,7 @@
+export type function Absolute = (value extends union [number, string, bigint]) => ^{
+    if(`${value}` extends `-${infer strAbs}`) {
+        return strAbs
+    } else {
+        return `${value}`
+    }
+}
