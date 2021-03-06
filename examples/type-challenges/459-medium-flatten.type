@@ -1,0 +1,19 @@
+export type function Flatten = (T) => ^{
+    /*
+        eg.
+        [1, 2, 3]
+        [[1,2], 3, 4]
+
+        head can be array or array element
+    */
+    if(T extends [infer head, ...infer tail]) {
+        return [...Flatten<head>, ...Flatten<tail>]
+    /* T is empty array */
+    } else if(T extends []){
+        return []
+    /* T is number(array element, not array) */
+    } else {
+        return [T]
+    }
+}
+  
