@@ -1,0 +1,7 @@
+export type function StringToUnion = (T extends string) => ^{
+    if(T extends `${infer char}${infer rest}`) {
+        return union [char, StringToUnion<rest>]
+    } else {
+        return never
+    }
+}
