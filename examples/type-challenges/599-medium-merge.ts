@@ -1,0 +1,1 @@
+export type Merge<a, b> = { [key in keyof (a & b)]: key extends keyof b ? b[key] : key extends keyof a ? a[key] : never };

@@ -1,5 +1,5 @@
 export type function AppendToObject = (T, Key extends PropertyKey, Value) => ^{
-    for(key in keyof union [T, Key]) {
+    for(key in union [keyof T, Key]) {
         return {
             key,
             value: ^{

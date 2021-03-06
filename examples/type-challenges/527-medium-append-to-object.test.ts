@@ -45,6 +45,7 @@ type testExpect3 = {
     isMotherRussia: false | undefined
 }
 
+type a  = keyof (test1 | 'home')
 checks([
     check<AppendToObject<test1, 'home', boolean>, testExpect1, Test.Pass>(),
     check<AppendToObject<test2, 'home', 1>, testExpect2, Test.Pass>(),

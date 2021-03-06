@@ -1,0 +1,16 @@
+export type function Merge = (a, b) => ^{
+    for(key in keyof combine [a, b]) {
+        return {
+            key,
+            value: ^{
+                if(key extends keyof b) {
+                    return b[key]
+                } else if(key extends keyof a) {
+                    return a[key]
+                } else {
+                    return never
+                }
+            }
+        }
+    }
+}

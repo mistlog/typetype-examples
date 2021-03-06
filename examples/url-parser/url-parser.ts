@@ -27,4 +27,4 @@ export type parseHost<text> = text extends `${infer name}:${infer port}` ? parse
 type parsePort<text> = isNumberString<text> extends true ? text : never;
 type isNumberString<text> = text extends "" ? never : _isNumberString<text>;
 type _isNumberString<text> = text extends "" ? true : text extends `${infer digit}${infer rest}` ? digit extends Digit ? _isNumberString<rest> : false : false;
-type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+type Digit = ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9");
