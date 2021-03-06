@@ -1,0 +1,13 @@
+export type function KebabCase = (str) => ^{
+    if(str extends `${infer char}${infer rest}`) {
+        return ^{
+            if(rest extends Uncapitalize<rest>) {
+                return `${Uncapitalize<char>}${KebabCase<rest>}`
+            } else {
+                return `${Uncapitalize<char>}-${KebabCase<rest>}`
+            }
+        }
+    } else {
+        return str
+    }
+}

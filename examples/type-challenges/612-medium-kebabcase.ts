@@ -1,0 +1,1 @@
+export type KebabCase<str> = str extends `${infer char}${infer rest}` ? rest extends Uncapitalize<rest> ? `${Uncapitalize<char>}${KebabCase<rest>}` : `${Uncapitalize<char>}-${KebabCase<rest>}` : str;
