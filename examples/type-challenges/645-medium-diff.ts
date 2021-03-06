@@ -1,0 +1,1 @@
+export type Diff<a, b> = { [key in (keyof a | keyof b) as Exclude<key, (keyof a & keyof b)>]: key extends keyof a ? a[key] : key extends keyof b ? b[key] : never };

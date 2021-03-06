@@ -1,0 +1,16 @@
+export type function Diff = (a, b) => ^{
+    for(key in union [keyof a, keyof b]) {
+        return {
+            key: Exclude<key, combine [keyof a, keyof b]>,
+            value: ^{
+                if(key extends keyof a) {
+                    return a[key]
+                } else if(key extends keyof b) {
+                    return b[key]
+                } else {
+                    return never
+                }
+            }
+        }
+    }
+}
