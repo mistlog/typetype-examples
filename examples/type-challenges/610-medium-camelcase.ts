@@ -1,0 +1,1 @@
+export type CamelCase<str> = str extends `${infer head}-${infer tail}` ? tail extends Capitalize<tail> ? `${head}-${CamelCase<tail>}` : `${head}${CamelCase<Capitalize<tail>>}` : str;

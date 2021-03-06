@@ -11,14 +11,15 @@ const { checks, check } = Test
 type Foo = {
     a: number;
     b: string;
-  };
-  type Bar = {
+};
+
+type Bar = {
     b: number;
-  };
+};
 
 checks([
     check<Merge<Foo, Bar>, {
         a: number;
         b: number;
-      }, Test.Pass>(),
+    }, Test.Pass>(),
 ])

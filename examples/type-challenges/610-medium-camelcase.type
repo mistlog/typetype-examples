@@ -1,0 +1,15 @@
+export type function CamelCase = (str) => ^{
+    if(str extends `${infer head}-${infer tail}`) {
+        return ^{
+            /* convert 'a-B' to 'a-B'  */
+            if(tail extends Capitalize<tail>) {
+                return `${head}-${CamelCase<tail>}`
+            /* conert 'a-b' to 'aB' */
+            } else {
+                return `${head}${CamelCase<Capitalize<tail>>}`
+            }
+        }
+    } else {
+        return str
+    }
+}
