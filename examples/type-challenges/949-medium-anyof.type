@@ -1,0 +1,18 @@
+export type function AnyOf = (T extends any[]) => ^{
+    if(T[number] extends FalsyType) {
+        return false
+    } else {
+        return true
+    }
+}
+
+type EmptyObject = ^{
+    for(key in string) {
+        return {
+            key,
+            value: never
+        }
+    }
+}
+
+type FalsyType = union [0, "", false, [], EmptyObject]
