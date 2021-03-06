@@ -1,0 +1,14 @@
+export type function AppendToObject = (T, Key extends PropertyKey, Value) => ^{
+    for(key in keyof union [T, Key]) {
+        return {
+            key,
+            value: ^{
+                if(key extends keyof T) {
+                    return T[key]
+                } else {
+                    return Value
+                }
+            }
+        }
+    }
+}
