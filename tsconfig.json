@@ -2,7 +2,10 @@
     "compilerOptions": {
         "target": "es6",
         "module": "commonjs",
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "strict": true
     },
     "include": ["./examples", "index.ts", "./polyfill"]
 }
