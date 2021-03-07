@@ -15,28 +15,34 @@ export type function OptionType = (dataType, methodType, computedType) => {
         >
     ],
     methods?: combine [
+        /* methodType will be inferred(and used) as type of methods field */
         methodType,
+        /* mark "this" in methods(mark fields you can use) */
         ThisType<
             combine [
+                /* you can access dataType */
                 dataType,
+                /* methodType */
                 methodType,
-                /* for computed, we need only the return type */
-                ^{
-                    for(key in keyof computedType) {
-                        return {
-                            key,
-                            value: ^{
-                                if(computedType[key] extends type (...args: any[]) => any) {
-                                    return ReturnType<computedType[key]>
-                                } else {
-                                    return never
-                                }
-                            }
-                        }      
-                    }
-                }
+                /* and processed computedType using "this." */
+                ProcessedComputedType<computedType>
             ]
         >
     ]
 }
 
+/* for computed, we need only the return type */
+type function ProcessedComputedType = (T) => ^{
+    for(key in keyof T) {
+        return {
+            key,
+            value: ^{
+                if(T[key] extends type (...args: any[]) => infer returnType) {
+                    return returnType
+                } else {
+                    return never
+                }
+            }
+        }      
+    }
+}
