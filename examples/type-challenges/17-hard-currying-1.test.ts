@@ -1,7 +1,7 @@
 /**
  * ref:
  * - https://github.com/type-challenges/type-challenges/blob/master/questions/17-hard-currying-1/README.md
- * - https://github.com/type-challenges/type-challenges/issues/594
+ * - https://github.com/type-challenges/type-challenges/issues/1034
  */
 
 import { Test } from "ts-toolbelt"
