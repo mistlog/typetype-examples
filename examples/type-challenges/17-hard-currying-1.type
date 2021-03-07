@@ -1,0 +1,13 @@
+export type function Curry = (T) => ^{
+    if(T extends type (...args: infer argsType) => infer returnType) {
+        return ^{
+            if(argsType extends [infer FirstType, ...infer RestArgs]) {
+                return type (arg: FirstType) => Curry<type (...args: RestArgs) => returnType>
+            } else {
+                return ReturnType<T>
+            }
+        }
+    } else {
+        return never
+    }
+}

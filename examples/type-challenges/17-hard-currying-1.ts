@@ -1,0 +1,1 @@
+export type Curry<T> = T extends (...args: infer argsType) => infer returnType ? argsType extends [infer FirstType, ...infer RestArgs] ? (arg: FirstType) => Curry<(...args: RestArgs) => returnType> : ReturnType<T> : never;
