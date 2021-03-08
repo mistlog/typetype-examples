@@ -1,0 +1,2 @@
+type toFunctionUnion<union> = union extends infer ItemType ? (arg: ItemType) => any : never;
+export type UnionToIntersection<union> = toFunctionUnion<union> extends (arg: infer ArgType) => any ? ArgType : never;

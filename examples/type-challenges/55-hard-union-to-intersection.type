@@ -1,0 +1,15 @@
+type function toFunctionUnion = (union) => ^{
+    if(union extends infer ItemType) {
+        return type (arg: ItemType) => any
+    } else {
+        return never
+    }
+}
+
+export type function UnionToIntersection = (union) => ^{
+    if(toFunctionUnion<union> extends type (arg: infer ArgType) => any) {
+        return ArgType
+    } else {
+        return never
+    }
+}
