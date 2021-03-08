@@ -1,0 +1,22 @@
+type function isRequired = (T, K extends keyof T) => ^{
+    if(Pick<T, K> extends Record<K, T[K]>) {
+        return true
+    } else {
+        return false
+    }
+}
+
+export type function GetRequired = (T) => ^{
+    for(K in keyof T) {
+        return {
+            key: ^{
+                if(isRequired<T,K> extends true) {
+                    return K
+                } else {
+                    return never
+                }
+            },
+            value: T[K]
+        }
+    }
+}
