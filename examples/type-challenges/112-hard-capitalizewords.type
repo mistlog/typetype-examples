@@ -1,11 +1,14 @@
 export type function CapitalizeWords = (str extends string) => ^{
     if(str extends `${infer left} ${infer right}`) {
-        return `${CapitalizeWords<left>} ${CapitalizeWords<right>}`
+        return Words<left," ", right>
     } else if(str extends `${infer left},${infer right}`) {
-        return `${CapitalizeWords<left>},${CapitalizeWords<right>}`
+        return Words<left,",", right>
     } else if(str extends `${infer left}.${infer right}`) {
-        return `${CapitalizeWords<left>}.${CapitalizeWords<right>}`
+        return Words<left,".", right>
     } else {
         return Capitalize<str>
     }
 }
+
+type function Words = (left extends string, separator extends string, right extends string) 
+    => `${CapitalizeWords<left>}${separator}${CapitalizeWords<right>}`
