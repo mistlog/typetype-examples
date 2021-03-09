@@ -1,0 +1,1 @@
+export type CapitalizeWords<str extends string> = str extends `${infer left} ${infer right}` ? `${CapitalizeWords<left>} ${CapitalizeWords<right>}` : str extends `${infer left},${infer right}` ? `${CapitalizeWords<left>},${CapitalizeWords<right>}` : str extends `${infer left}.${infer right}` ? `${CapitalizeWords<left>}.${CapitalizeWords<right>}` : Capitalize<str>;
