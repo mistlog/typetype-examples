@@ -1,0 +1,3 @@
+import { GetRequired } from "./57-hard-get-required"
+
+export type function GetOptional = (T) => Omit<T, keyof GetRequired<T>>
