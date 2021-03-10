@@ -1,0 +1,23 @@
+export type function ParsePrintFormat = (str extends string, result extends string[] = []) => ^{
+    if(str extends `${infer head}%${infer formatChar}${infer rest}`) {
+        return ^{
+            if(formatChar extends keyof ControlsMap) {
+                return ParsePrintFormat<rest, [...result, ControlsMap[formatChar]]>
+            } else {
+                return ParsePrintFormat<rest, result>
+            }
+        }
+    } else {
+        return result
+    }
+}
+
+type ControlsMap = {
+  c: "char",
+  s: "string",
+  d: "dec",
+  o: "oct",
+  h: "hex",
+  f: "float",
+  p: "pointer"
+}
