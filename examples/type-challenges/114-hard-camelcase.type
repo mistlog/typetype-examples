@@ -1,0 +1,7 @@
+export type function CamelCase = (str extends string) => ^{
+    if(str extends `${infer word}_${infer char}${infer rest}`) {
+        return `${Lowercase<word>}${Capitalize<char>}${CamelCase<rest>}`
+    } else {
+        return Lowercase<str>
+    }
+}
