@@ -2,35 +2,14 @@
  * ref:
  * - https://github.com/type-challenges/type-challenges/blob/master/questions/213-hard-vue-basic-props/README.md
  * - https://github.com/type-challenges/type-challenges/issues/986
+ * - https://github.com/type-challenges/type-challenges/issues/441
  */
 
 import { Test } from "ts-toolbelt"
+import { OptionType } from "./213-hard-vue-basic-props"
 const { checks, check } = Test
 
-//
-type GetComputed<C> = {
-    [P in keyof C]: C[P] extends (...args: any[]) => infer R ? R : never
-}
-type CtorToType<T> = T extends () => infer RE
-    ? RE
-    : T extends new (...args: any) => infer R ? R : never
-
-type GetProps<T> = {
-    [P in keyof T]: T[P] extends { type: infer R }
-    ? R extends (infer A)[] ? CtorToType<A> : CtorToType<R>
-    : T[P] extends { [key: string]: never } ? any : CtorToType<T[P]>
-}
-
-
-type Vm<P, D, C, M> = {
-    props: P
-    data: (this: GetProps<P>) => D
-    computed: C & ThisType<D & M & GetComputed<C>>
-    methods: M & ThisType<D & GetComputed<C> & M & GetProps<P>>
-}
-
-declare function VueBasicProps<P, D, C, M>(options: Vm<P, D, C, M>): any
-
+declare function VueBasicProps<D, M, C, P>(options: OptionType<D, M, C, P>): any
 
 //
 class ClassA { }

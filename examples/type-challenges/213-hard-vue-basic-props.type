@@ -1,0 +1,89 @@
+export type function OptionType = (dataType, methodType, computedType, propsType) => {
+    /* dataType will be inferred(and used) as return type of data function */
+    data?: type (this: transformProps<propsType>) => dataType,
+    computed?: combine [
+        /* computedType will be inferred(and used) as type of computed field */
+        computedType,
+        /* mark "this" in computed(mark fields you can use) */
+        ThisType<
+            combine [
+                /* you can access dataType */
+                dataType,
+                /* and methodType using "this." */
+                methodType
+            ]
+        >
+    ],
+    methods?: combine [
+        /* methodType will be inferred(and used) as type of methods field */
+        methodType,
+        /* mark "this" in methods(mark fields you can use) */
+        ThisType<
+            combine [
+                /* you can access dataType */
+                dataType,
+                /* methodType */
+                methodType,
+                /* processed computedType" */
+                transformComputed<computedType>,
+                /* and processed propType using "this." */
+                transformProps<propsType>
+            ]
+        >
+    ],
+    props?: propsType
+}
+
+/* for computed, we need only the return type */
+type function transformComputed = (computed) => ^{
+    for(key in keyof computed) {
+        return {
+            key,
+            value: ^{
+                if(computed[key] extends type (...args: any) => any) {
+                    return ReturnType<computed[key]>
+                } else {
+                    return never
+                }
+            }
+        }      
+    }
+}
+
+type function transformProps = (props) => ^{
+    for(key in keyof props) {
+        return {
+            key,
+            value: transformProp<props[key]>
+        }
+    }
+}
+
+type function transformProp = (prop) => ^{
+    /* A prop will be defined either by a constructor or an object with a type field containing constructor(s). */
+    if(prop extends {type: infer propType }) {
+        return ^{
+            /* when passing multiple constructors, the type should be inferred to a union. */
+            if(propType extends Array<infer EachProp>) {
+                return transformFunction<EachProp>
+            } else {
+                return transformFunction<propType>
+            }
+        }
+    /* when an empty object is passed, the key should be inferred to any. */
+    } else if({} extends prop) {
+        return any
+    } else {
+        return transformFunction<prop>
+    }
+}
+
+type function transformFunction = (T) => ^{
+    if(T extends type (...args: any) => any) {
+        return ReturnType<T>
+    } else if(T extends type new (...args: any) => any) {
+        return InstanceType<T>
+    } else {
+        return never
+    }
+}
