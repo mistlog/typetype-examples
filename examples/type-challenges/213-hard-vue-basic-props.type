@@ -24,9 +24,9 @@ export type function OptionType = (dataType, methodType, computedType, propsType
                 dataType,
                 /* methodType */
                 methodType,
-                /* processed computedType" */
+                /* transformed computedType" */
                 transformComputed<computedType>,
-                /* and processed propType using "this." */
+                /* and transformed propType using "this." */
                 transformProps<propsType>
             ]
         >
@@ -40,8 +40,8 @@ type function transformComputed = (computed) => ^{
         return {
             key,
             value: ^{
-                if(computed[key] extends type (...args: any) => any) {
-                    return ReturnType<computed[key]>
+                if(computed[key] extends type (...args: any) => infer returnType) {
+                    return returnType
                 } else {
                     return never
                 }
@@ -60,7 +60,7 @@ type function transformProps = (props) => ^{
 }
 
 type function transformProp = (prop) => ^{
-    /* A prop will be defined either by a constructor or an object with a type field containing constructor(s). */
+    /* a prop will be defined either by a constructor or an object with a type field containing constructor(s). */
     if(prop extends {type: infer propType }) {
         return ^{
             /* when passing multiple constructors, the type should be inferred to a union. */
@@ -79,10 +79,10 @@ type function transformProp = (prop) => ^{
 }
 
 type function transformFunction = (T) => ^{
-    if(T extends type (...args: any) => any) {
-        return ReturnType<T>
-    } else if(T extends type new (...args: any) => any) {
-        return InstanceType<T>
+    if(T extends type (...args: any) => infer returnType) {
+        return returnType
+    } else if(T extends type new (...args: any) => infer instanceType) {
+        return instanceType
     } else {
         return never
     }
