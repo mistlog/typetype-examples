@@ -1,3 +1,4 @@
+import { Temp } from "./to-import";
 type keywordTypes = [string, number, boolean, never, any, bigint, object];
 type literals = ["abc", true, false, 0, 1, 2, string[][], `name: ${string}`, {
   readonly a?: 1;
@@ -11,6 +12,7 @@ type f2 = (a: number, b: string) => number;
 type f3 = () => (a: number, b: string) => void;
 type u1 = (0 | 1 | 2);
 type u2 = (0 | 1 | 2);
+type u3 = ((() => 1) | (() => "1"));
 type i1 = ({
   a: 1;
 } & {

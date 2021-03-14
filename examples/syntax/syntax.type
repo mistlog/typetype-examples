@@ -4,6 +4,11 @@
  */
 
 /**
+ * Import types from another file
+ */
+import { Temp } from "./to-import"
+
+/**
  * Keyword Types
  */
 type keywordTypes = [string, number, boolean, never, any, bigint, object]
@@ -61,6 +66,11 @@ type f3 = type () => type(a: number, b: string) => void
  */
 type u1 = union[0, 1, 2]
 type u2 = | [0, 1, 2]
+/* add parenthesis for function in union */
+type u3 = union [
+    (type () => 1),
+    (type () => "1")
+]
 
 type i1 = combine[{ a: 1 }, { b: 2 }]
 type i2 = & [{ a: 1 }, { b: 2 }]
