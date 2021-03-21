@@ -1,0 +1,7 @@
+export type function IsAny = (T) => ^{
+    if(false extends combine [true, T]) {
+        return true
+    } else {
+        return false
+    }
+}
