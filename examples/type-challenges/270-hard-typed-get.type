@@ -1,0 +1,15 @@
+export type function Get = (T, key) => ^{
+    if(key extends keyof T) {
+        return T[key]
+    } else if(key extends `${infer head}.${infer rest}`){
+        return ^{
+            if(head extends keyof T) {
+                return Get<T[head], rest>
+            } else {
+                return never
+            }
+        }
+    } else {
+        return never
+    }
+}

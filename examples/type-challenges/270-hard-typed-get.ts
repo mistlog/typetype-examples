@@ -1,0 +1,1 @@
+export type Get<T, key> = key extends keyof T ? T[key] : key extends `${infer head}.${infer rest}` ? head extends keyof T ? Get<T[head], rest> : never : never;
