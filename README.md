@@ -46,7 +46,7 @@ foreach example-set in this repo:
 
 ```bash
 > npm install
-> npm run build // generate output
+> npm run dev
 ```
 
 ## License
